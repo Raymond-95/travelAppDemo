@@ -5256,6 +5256,10 @@ react-is@^16.7.0:
 react-is@^17.0.1:
   version "17.0.2"
 
+"react-native-calendar-module@file:./nativeModules/react-native-calendar-module":
+  version "0.0.0"
+  resolved "file:nativeModules/react-native-calendar-module"
+
 "react-native-gesture-handler@>= 1.0.0":
   version "2.20.0"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.20.0.tgz"

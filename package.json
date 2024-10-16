@@ -19,7 +19,8 @@
     "react-native": "0.75.4",
     "react-native-reanimated": "^3.15.5",
     "react-native-safe-area-context": "^4.11.0",
-    "react-native-screens": "^3.34.0"
+    "react-native-screens": "^3.34.0",
+    "react-native-calendar-module": "file:./nativeModules/react-native-calendar-module"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

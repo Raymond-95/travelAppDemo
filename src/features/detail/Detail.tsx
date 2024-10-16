@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import type { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../navigation/Navigator';
@@ -15,6 +15,11 @@ import { COLORS } from '../../common/theme';
 import { IMAGES } from '../../common/assets/images';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import {
+  createCalendarEvent,
+  deleteCalendarEvent,
+} from 'react-native-calendar-module';
+
 import { FONTS } from '../../common/theme';
 
 interface Props {
@@ -25,6 +30,7 @@ interface Props {
 const Detail = ({ route }: Props) => {
   const { destination, sharedTransitionTag } = route.params;
   const [isAddedToCalendar, setIsAddedToCalendar] = useState<boolean>(false);
+  const [eventId, setEventId] = useState<string>('');
 
   // Shared values for text animation
   const textOpacity = useSharedValue(0);
@@ -63,19 +69,37 @@ const Detail = ({ route }: Props) => {
     opacity: tickOpacity.value, // Fade-in effect for the tick icon
   }));
 
+  const showErrorAlert = (message: string) => {
+    Alert.alert('Error', message);
+  };
+
   const addToCalendar = () => {
-    // Toggle the added state
     setIsAddedToCalendar(!isAddedToCalendar);
 
     if (!isAddedToCalendar) {
-      tickOpacity.value = withTiming(1, {
-        // Fade in
-        duration: 800,
-        easing: Easing.linear,
-      });
+      // Create event
+      createCalendarEvent(
+        destination.name,
+        destination.location.latitude.toString(),
+        destination.location.longitude.toString(),
+        destination.suggestedTravelDates[0],
+        destination.suggestedTravelDates[1],
+      )
+        .then(calendarEventId => {
+          setEventId(calendarEventId);
+          tickOpacity.value = withTiming(1, {
+            duration: 800,
+            easing: Easing.linear,
+          });
+        })
+        .catch(error => {
+          showErrorAlert(error.message);
+        });
     } else {
+      // Cancel event
+      deleteCalendarEvent(eventId);
+
       tickOpacity.value = withTiming(0, {
-        // Fade out
         duration: 800,
         easing: Easing.linear,
       });
