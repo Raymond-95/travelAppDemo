@@ -10,7 +10,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamsList } from '../navigation/Navigator';
 import Animated from 'react-native-reanimated';
 
-import { COLORS } from '../../common/theme';
+import { COLORS, FONTS } from '../../common/theme';
 import DATA from '../../common/assets/data.json';
 
 import { Destination } from '../detail/data/entity/Destination';
@@ -52,7 +52,7 @@ const Home = ({ navigation }: Props) => {
                 style={styles.image}
                 resizeMode="cover"
               />
-              <Text style={styles.text}>{item.name}</Text>
+              <Text style={[FONTS.regularBold, styles.text]}>{item.name}</Text>
             </TouchableOpacity>
           );
         }}
@@ -73,9 +73,6 @@ const styles = StyleSheet.create({
   },
   text: {
     position: 'absolute',
-    color: COLORS.white,
-    fontSize: 16,
-    fontWeight: 'bold',
     textTransform: 'uppercase',
     top: 10,
     left: 10,

@@ -15,6 +15,8 @@ import { COLORS } from '../../common/theme';
 import { IMAGES } from '../../common/assets/images';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { FONTS } from '../../common/theme';
+
 interface Props {
   route: RouteProp<RootStackParamsList, 'Detail'>;
   navigation: StackNavigationProp<RootStackParamsList, 'Detail'>;
@@ -90,8 +92,12 @@ const Detail = ({ route }: Props) => {
         />
 
         <Animated.View style={[styles.textContainer, animatedTextStyle]}>
-          <Text style={styles.text}>{destination.name}</Text>
-          <Text style={styles.description}>{destination.description}</Text>
+          <Text style={[FONTS.heading1Bold, styles.title]}>
+            {destination.name}
+          </Text>
+          <Text style={[FONTS.heading2, styles.description]}>
+            {destination.description}
+          </Text>
         </Animated.View>
 
         <TouchableOpacity
@@ -101,7 +107,9 @@ const Detail = ({ route }: Props) => {
           ]}
           activeOpacity={0.9}
           onPress={addToCalendar}>
-          <Text style={styles.buttonText}>add to calendar</Text>
+          <Text style={[FONTS.regular, styles.buttonText]}>
+            add to calendar
+          </Text>
           {isAddedToCalendar && (
             <Animated.Image
               source={IMAGES.tick}
@@ -129,16 +137,10 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.transparentLightGrey,
     borderRadius: 5,
   },
-  text: {
-    color: COLORS.white,
-    fontSize: 30,
-    fontWeight: 'bold',
+  title: {
     textTransform: 'uppercase',
   },
   description: {
-    color: COLORS.white,
-    fontSize: 15,
-    fontWeight: 'bold',
     textTransform: 'capitalize',
     marginTop: 20,
   },
@@ -155,8 +157,6 @@ const styles = StyleSheet.create({
     columnGap: 10,
   },
   buttonText: {
-    color: COLORS.white,
-    fontSize: 15,
     textTransform: 'uppercase',
     marginVertical: 20,
   },
