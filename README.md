@@ -16,7 +16,11 @@ Since you may have multiple Gmail calendars, the ideal approach would be to allo
 
 ```bash
 npm install
+```
 
+### For iOS
+
+```bash
 # install pods
 cd ios && pod install
 
@@ -48,3 +52,7 @@ yarn ios
 If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+
+## Future Improvement
+
+- The permission handling should be centralized in the React Native side, allowing us to manage permission success and failure actions in a consistent manner.

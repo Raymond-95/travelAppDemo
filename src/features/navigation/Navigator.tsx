@@ -2,6 +2,11 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import {
+  isMountedRef,
+  navigationRef,
+} from '../../services/navigation/NavigationService';
+
 import { COLORS } from '../../common/theme';
 
 import HomeScreen from '../home/Home';
@@ -17,8 +22,15 @@ export type RootStackParamsList = {
 const Stack = createNativeStackNavigator<RootStackParamsList>();
 
 const Navigator = () => {
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen
