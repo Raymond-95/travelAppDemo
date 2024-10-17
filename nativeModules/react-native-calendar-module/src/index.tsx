@@ -19,8 +19,8 @@ const CalendarModule = NativeModules.CalendarModule
 
 const createCalendarEvent = (
   name: string,
-  latitude: string,
-  longitude: string,
+  latitude: number,
+  longitude: number,
   startDate: string,
   endDate: string,
 ): Promise<string> => {

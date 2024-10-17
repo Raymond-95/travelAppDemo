@@ -74,18 +74,17 @@ const Detail = ({ route }: Props) => {
   };
 
   const addToCalendar = () => {
-    setIsAddedToCalendar(!isAddedToCalendar);
-
     if (!isAddedToCalendar) {
       // Create event
       createCalendarEvent(
         destination.name,
-        destination.location.latitude.toString(),
-        destination.location.longitude.toString(),
+        destination.location.latitude,
+        destination.location.longitude,
         destination.suggestedTravelDates[0],
         destination.suggestedTravelDates[1],
       )
         .then(calendarEventId => {
+          setIsAddedToCalendar(!isAddedToCalendar);
           setEventId(calendarEventId);
           tickOpacity.value = withTiming(1, {
             duration: 800,
@@ -97,12 +96,17 @@ const Detail = ({ route }: Props) => {
         });
     } else {
       // Cancel event
-      deleteCalendarEvent(eventId);
-
-      tickOpacity.value = withTiming(0, {
-        duration: 800,
-        easing: Easing.linear,
-      });
+      deleteCalendarEvent(eventId)
+        .then(() => {
+          setIsAddedToCalendar(!isAddedToCalendar);
+          tickOpacity.value = withTiming(0, {
+            duration: 800,
+            easing: Easing.linear,
+          });
+        })
+        .catch(error => {
+          showErrorAlert(error.message);
+        });
     }
   };
   return (
