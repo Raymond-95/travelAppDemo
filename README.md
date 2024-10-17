@@ -1,5 +1,9 @@
 # Travel App Demo
 
+| Android | iOS    |
+| :---:   | :---: |
+| <video src="https://github.com/user-attachments/assets/977f1bb6-9a82-4c45-8719-7cba4c2554f0" width="200" /> | <video src="https://github.com/user-attachments/assets/c2140a58-e547-4a6c-8215-60eb6fdec255" width="200" />   |
+
 # Getting Started
 
 ## Step 1
