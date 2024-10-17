@@ -12,7 +12,7 @@ Manually set your Gmail account in `nativeModules/react-native-calendar-module/a
 
 Since you may have multiple Gmail calendars, the ideal approach would be to allow users to select their preferred email. However, due to time constraints, please update it manually for now.
 
-# Step 2 - Install the dependencies
+## Step 2 - Install the dependencies
 
 ```bash
 npm install
@@ -53,6 +53,6 @@ If everything is set up _correctly_, you should see your new app running in your
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Future Improvement
+# Future Improvement
 
 - The permission handling should be centralized in the React Native side, allowing us to manage permission success and failure actions in a consistent manner.
